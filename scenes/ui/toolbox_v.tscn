@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dioo4irawvpx"]
+
+[ext_resource type="Script" path="res://scenes/ui/toolbox_actions.gd" id="1_yjpde"]
+
+[node name="Toolbox" type="Control"]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_yjpde")
+
+[node name="ToolsPalette" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1

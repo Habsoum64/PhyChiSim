@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d2ch6m3yla8ne"]
+
+[node name="ChemObj" type="Node2D"]

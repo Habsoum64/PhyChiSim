@@ -1,0 +1,74 @@
+General Simulation Policies
+- Different types of simulations depending on the subject of study/interest.
+- Each simulation type will have its own set of tools and rules.
+- Tools and objects would be displayed in palettes, similarly to common graphics and modeling editors.
+- Possibly implement some kind of contextual menu for tuning objects in the building mode.
+- Simulations might be saved in a standardized format that accommodates different subjects but allows extensions for subject-specific data.
+- Ensure modular and scalable simulation design to support future expansion (e.g., additional scientific disciplines).
+
+General Object Mechanics
+- Objects would be instantiated as a simulation is started (with all their assets and default parameters).
+- Protocols for object generation.
+- Efficient management, storage, and mapping of assets and objects.
+- Implement a global object identification system to ensure seamless interactions between different simulations.
+
+Modularity Mechanics
+- All objects would have joining points that can create links using PinJoint nodes, with the possibility of extending to HingeJoint and SliderJoint nodes for added flexibility.
+- Every object can be selected and have its body properties modified through a designated menu.
+- Global scene variables can be modified and turned on/off through a scene settings menu.
+- Consider a structured hierarchy for object classification to ensure modular functionality.
+
+General App Interface Policies
+3 main sections:
+- Home page with options to navigate through recent projects or select the other sections.
+- Learning Hub: Library of simulations for teaching various topics.
+- Library: Where users can browse through their simulations and projects.
+
+Scene Mechanics
+- Typically a canvas for adding objects and creating scenarios for simulations.
+- Size can be modified depending on the number of elements on it.
+- Simulations from the learning library would offer only partial options deemed useful for the learning process.
+- Data on scene elements could be stored in a file (e.g., JSON, SQLite) to facilitate content generation at runtime.
+- Scenes from the learning library would have preset backgrounds, borders, and elements.
+- Scenes made by users would have default parameters but allow free arrangement.
+- Free camera movement around the scene.
+- Ability to focus the camera on specific elements and possibly follow their movements.
+- Introduce layers for better visualization (e.g., separate physics calculations from visual rendering).
+
+Physics Objects
+- Template structure: RigidBody2D with CollisionShape2D and Sprite2D.
+- Different classes of objects with different parameters and forces applied to them.
+- All objects would be subject to global physics variables like gravity, friction, wind resistance, etc.
+- Consider implementing built-in tools for measuring distance, force, and energy dynamically.
+
+Chemistry Objects
+- 2D Template structure: RigidBody2D with Sprite2D.
+- 3D Template structure: To be determined.
+- Each object will have a predetermined number of joints in tune with scientific knowledge.
+- Combinations could be done by drag & drop or through formulas.
+- Ensure molecular bonding rules follow scientifically accurate constraints (e.g., valence rules).
+- 3D visualization would be limited to selected entities.
+
+Assets Policy
+- The app would come with a set of assets for all elements in the simulation scenes.
+- Each asset would be tied to particular objects.
+- Define a custom asset system that allows easy expansion (e.g., supporting user-imported assets in future updates).
+
+Physics Simulations
+Topics: Motion study, electricity, and circuits (if time allows).
+For motion study:
+- Show interactions between different objects in various situations.
+- Allow users to visualize relevant vectors and angle measurements.
+- Sample simulations (library): Pendulum, ball launching, race between objects (possibly with relatable illustrations).
+
+Chemistry Simulations
+Topic: Molecular bonding and reactions.
+- Show elements (atoms, electrons, etc.) with enticing colors and visually pleasing assets.
+- Display bonds between elements and formulas.
+- Allow for 3D visualization of selected elements.
+
+Additional Details
+- Make good use of the OOP approach in GDScript to better manage the code and its elements.
+- Define a standardized scene format to ensure different simulation types can coexist efficiently.
+- For this development period, use basic but relevant assets.
+

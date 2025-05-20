@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnpxxy7qecjpm"]
+
+[ext_resource type="Script" path="res://scripts/managers/phy_sim_module.gd" id="1_ubew1"]
+[ext_resource type="PackedScene" uid="uid://doxg2ai64lgio" path="res://scenes/ui/toolbox_h.tscn" id="2_wnb0i"]
+[ext_resource type="PackedScene" uid="uid://c6b1wul07w86q" path="res://scenes/objects/misc/test_grounds.tscn" id="3_3j4yd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3rhqh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fkr72"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxef3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_47dnw"]
+
+[node name="PhySimulation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ubew1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.886275, 0.886275, 0.886275, 1)
+
+[node name="scene_borders" type="Node2D" parent="."]
+visible = false
+
+[node name="border_top" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(587.5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_top"]
+rotation = 3.14159
+scale = Vector2(54, 1)
+shape = SubResource("WorldBoundaryShape2D_3rhqh")
+
+[node name="border_down" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(577, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_down"]
+scale = Vector2(57.5, 1)
+shape = SubResource("WorldBoundaryShape2D_fkr72")
+
+[node name="border_left" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(0, 324)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_left"]
+scale = Vector2(29.5, 1)
+shape = SubResource("WorldBoundaryShape2D_sxef3")
+
+[node name="border_right" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(1175, 324)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_right"]
+scale = Vector2(30.5, 1)
+shape = SubResource("WorldBoundaryShape2D_47dnw")
+
+[node name="Toolbox" parent="." instance=ExtResource("2_wnb0i")]
+layout_mode = 1
+offset_left = 325.0
+offset_right = 837.0
+
+[node name="TestGrounds" parent="." instance=ExtResource("3_3j4yd")]
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1083.0
+offset_bottom = 593.0

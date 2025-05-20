@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt0dprd3yjgkg"]
+
+[ext_resource type="Texture2D" uid="uid://chqwrbgg2ajju" path="res://assets/icons/ui/nav_ui/lessons.svg" id="1_ulekt"]
+[ext_resource type="Script" path="res://scenes/ui/navui_bar_bottom.gd" id="1_yi5fg"]
+[ext_resource type="Texture2D" uid="uid://wkttehthqik5" path="res://assets/icons/ui/nav_ui/library.svg" id="2_8mj1j"]
+[ext_resource type="ButtonGroup" uid="uid://bg3amutcw5tfa" path="res://ressources/button_group_navui-bar_b.tres" id="2_568gm"]
+[ext_resource type="Texture2D" uid="uid://pujcfshy56g5" path="res://assets/icons/ui/nav/home.svg" id="3_f5b77"]
+[ext_resource type="Texture2D" uid="uid://xehycwkv2ui0" path="res://assets/icons/ui/nav_ui/page_add.svg" id="4_1ojwq"]
+
+[node name="Navui-bar_bottom" type="Control"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_yi5fg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(75, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.772549, 0.2, 1)
+
+[node name="BottomContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_right = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Home" type="Button" parent="ColorRect/BottomContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("2_568gm")
+icon = ExtResource("3_f5b77")
+flat = true
+icon_alignment = 1
+expand_icon = true
+metadata/navui_bar_b_btn_name = "home"
+
+[node name="Lessons" type="Button" parent="ColorRect/BottomContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("2_568gm")
+icon = ExtResource("1_ulekt")
+flat = true
+icon_alignment = 1
+expand_icon = true
+metadata/navui_bar_b_btn_name = "lessons"
+
+[node name="Library" type="Button" parent="ColorRect/BottomContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("2_568gm")
+icon = ExtResource("2_8mj1j")
+flat = true
+icon_alignment = 1
+expand_icon = true
+metadata/navui_bar_b_btn_name = "library"
+
+[node name="New" type="Button" parent="ColorRect/BottomContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("4_1ojwq")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="ColorRect/BottomContainer/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="ColorRect/BottomContainer/Lessons" to="." method="_on_lessons_pressed"]
+[connection signal="pressed" from="ColorRect/BottomContainer/Library" to="." method="_on_library_pressed"]
+[connection signal="button_down" from="ColorRect/BottomContainer/New" to="." method="_on_new_button_down"]

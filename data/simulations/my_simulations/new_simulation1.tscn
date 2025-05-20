@@ -1,0 +1,241 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/managers/phy_sim_module.gd" id="1_pbvgb"]
+[ext_resource type="PackedScene" path="res://scenes/ui/toolbox_h.tscn" id="2_ker3b"]
+[ext_resource type="Script" path="res://scenes/ui/toolbox_objects.gd" id="3_2jqmf"]
+[ext_resource type="PackedScene" path="res://scenes/ui/toolbox_v.tscn" id="4_ok4kx"]
+[ext_resource type="Script" path="res://scenes/ui/toolbox_actions.gd" id="5_6mo5m"]
+[ext_resource type="Texture2D" path="res://assets/icons/ui/toolbox_actions/zoom_in.svg" id="6_uprws"]
+[ext_resource type="Texture2D" path="res://assets/icons/ui/toolbox_actions/focus.svg" id="7_n76xg"]
+[ext_resource type="Texture2D" path="res://assets/icons/ui/toolbox_actions/zoom_out.svg" id="8_vn222"]
+[ext_resource type="PackedScene" path="res://scenes/objects/misc/test_grounds.tscn" id="9_jqd0y"]
+[ext_resource type="Script" path="res://scripts/managers/CameraController.gd" id="10_mibrj"]
+[ext_resource type="PackedScene" path="res://scenes/objects/objects_physics/box.tscn" id="11_ow5l4"]
+[ext_resource type="Script" path="res://scripts/objects/interactive_object.gd" id="12_sc08r"]
+[ext_resource type="PackedScene" path="res://scenes/objects/objects_physics/ball.tscn" id="13_ipmcf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4uigt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb1n1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0m5xv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudkf"]
+
+[node name="PhySim" type="Control" groups=["Bodies", "Toolboxes"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_pbvgb")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(2500, 1500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -450.0
+offset_right = 698.0
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="UIelements" type="CanvasLayer" parent="."]
+
+[node name="SaveBtn" type="Button" parent="UIelements"]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -73.0
+offset_bottom = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Save"
+
+[node name="QuitBtn" type="Button" parent="UIelements"]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[node name="ShowToolsBtn" type="Button" parent="UIelements"]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Hide tools"
+
+[node name="ShowStatsBtn" type="Button" parent="UIelements"]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_top = 38.0
+offset_bottom = 74.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Show Stats"
+
+[node name="Tools" type="Control" parent="UIelements"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ToolboxObjects" type="Control" parent="UIelements/Tools" instance=ExtResource("2_ker3b")]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("3_2jqmf")
+
+[node name="ToolboxActions" type="Control" parent="UIelements/Tools" instance=ExtResource("4_ok4kx")]
+physics_interpolation_mode = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_6mo5m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIelements"]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ZoomIn" type="Button" parent="UIelements/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("6_uprws")
+expand_icon = true
+
+[node name="ZoomCenter" type="Button" parent="UIelements/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("7_n76xg")
+expand_icon = true
+
+[node name="ZoomOut" type="Button" parent="UIelements/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("8_vn222")
+expand_icon = true
+
+[node name="StatsView" type="CanvasLayer" parent="."]
+
+[node name="ValuesDisplay" type="VBoxContainer" parent="StatsView"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="scene_borders" type="Node2D" parent="."]
+visible = false
+
+[node name="border_top" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(576, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_top"]
+rotation = 3.14159
+scale = Vector2(54, 1)
+shape = SubResource("WorldBoundaryShape2D_4uigt")
+
+[node name="border_down" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(576, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_down"]
+scale = Vector2(57.5, 1)
+shape = SubResource("WorldBoundaryShape2D_tb1n1")
+
+[node name="border_left" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(0, 324)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_left"]
+scale = Vector2(29.5, 1)
+shape = SubResource("WorldBoundaryShape2D_0m5xv")
+
+[node name="border_right" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(1152, 324)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_right"]
+scale = Vector2(30.5, 1)
+shape = SubResource("WorldBoundaryShape2D_fudkf")
+
+[node name="TestGrounds" type="Node2D" parent="." instance=ExtResource("9_jqd0y")]
+position = Vector2(0, 46)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("10_mibrj")
+zoomSpeed = 15.0
+
+[node name="Box0" type="Node2D" parent="." instance=ExtResource("11_ow5l4")]
+script = ExtResource("12_sc08r")
+metadata/name = &"Box"
+
+[node name="Ball0" type="Node2D" parent="." instance=ExtResource("13_ipmcf")]
+script = ExtResource("12_sc08r")
+metadata/name = &"Ball"
+
+[node name="Ball1" type="Node2D" parent="." instance=ExtResource("13_ipmcf")]
+script = ExtResource("12_sc08r")
+metadata/name = &"Ball"
+
+[node name="Box1" type="Node2D" parent="." instance=ExtResource("11_ow5l4")]
+script = ExtResource("12_sc08r")
+metadata/name = &"Box"
+
+[connection signal="button_down" from="UIelements/SaveBtn" to="." method="_on_save_button_button_down"]
+[connection signal="button_down" from="UIelements/QuitBtn" to="." method="_on_quit_btn_button_down"]
+[connection signal="button_down" from="UIelements/ShowToolsBtn" to="." method="_on_show_tools_btn_button_down"]
+[connection signal="button_down" from="UIelements/ShowStatsBtn" to="." method="_on_show_stats_btn_button_down"]

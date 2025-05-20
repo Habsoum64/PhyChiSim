@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh25nw5qx42ht"]
+
+[ext_resource type="Script" path="res://scripts/objects/interactive_object.gd" id="1_chkui"]
+[ext_resource type="Script" path="res://scripts/objects/object_collision.gd" id="2_xvve6"]
+[ext_resource type="Texture2D" uid="uid://wdc45eggkq0r" path="res://assets/icons/objects/boxes/box1.svg" id="3_11gr3"]
+[ext_resource type="PackedScene" uid="uid://dj0slvgc1xef5" path="res://scenes/ui/menu-phy_obj.tscn" id="4_6nwqw"]
+
+[node name="Box" type="Node2D"]
+script = ExtResource("1_chkui")
+metadata/name = &"Box"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 100
+script = ExtResource("2_xvve6")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RigidBody2D"]
+scale = Vector2(0.65, 0.65)
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_11gr3")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+scale = Vector2(0.65, 0.65)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D/Area2D"]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="Vectors" type="Node2D" parent="."]
+
+[node name="Velocity" type="Line2D" parent="Vectors"]
+width = 3.0
+default_color = Color(0, 0, 0.870588, 1)
+
+[node name="Gravity" type="Line2D" parent="Vectors"]
+width = 3.0
+default_color = Color(0.870588, 0.294118, 0, 1)
+
+[node name="Reaction" type="Line2D" parent="Vectors"]
+width = 3.0
+default_color = Color(0.870588, 0, 0, 1)
+
+[node name="Tension" type="Line2D" parent="Vectors"]
+width = 3.0
+default_color = Color(0, 0.870588, 0, 1)
+
+[node name="Menu-phyObj" parent="." instance=ExtResource("4_6nwqw")]
+visible = false
+
+[connection signal="body_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]
+[connection signal="input_event" from="RigidBody2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="RigidBody2D/Area2D" to="." method="_on_area_2d_mouse_exited"]

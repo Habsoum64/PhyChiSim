@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvyuq6sf6m0sa"]
+
+[ext_resource type="Script" path="res://scripts/managers/phy_sim_module.gd" id="1_p3mow"]
+[ext_resource type="PackedScene" uid="uid://doxg2ai64lgio" path="res://scenes/ui/toolbox_h.tscn" id="2_4fc2x"]
+[ext_resource type="PackedScene" uid="uid://dioo4irawvpx" path="res://scenes/ui/toolbox_v.tscn" id="3_6oxkw"]
+[ext_resource type="PackedScene" uid="uid://c6b1wul07w86q" path="res://scenes/objects/misc/test_grounds.tscn" id="4_d17i7"]
+[ext_resource type="PackedScene" uid="uid://dng8rk5f33022" path="res://scenes/objects/objects_physics/ball.tscn" id="5_4iuwv"]
+[ext_resource type="PackedScene" uid="uid://dh25nw5qx42ht" path="res://scenes/objects/objects_physics/box.tscn" id="6_ln2e8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4uigt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb1n1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0m5xv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudkf"]
+
+[node name="PhySim" type="Control" groups=["Bodies", "Toolboxes"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_p3mow")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="UIelements" type="CanvasLayer" parent="."]
+
+[node name="ToolboxObjects" parent="UIelements" instance=ExtResource("2_4fc2x")]
+offset_bottom = 70.0
+
+[node name="ToolboxActions" parent="UIelements" instance=ExtResource("3_6oxkw")]
+offset_left = -70.0
+
+[node name="SaveButton" type="Button" parent="UIelements"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Save"
+
+[node name="StatsView" type="CanvasLayer" parent="."]
+
+[node name="Rows" type="VBoxContainer" parent="StatsView"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="scene_borders" type="Node2D" parent="."]
+visible = false
+
+[node name="border_top" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(587.5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_top"]
+rotation = 3.14159
+scale = Vector2(54, 1)
+shape = SubResource("WorldBoundaryShape2D_4uigt")
+
+[node name="border_down" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(577, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_down"]
+scale = Vector2(57.5, 1)
+shape = SubResource("WorldBoundaryShape2D_tb1n1")
+
+[node name="border_left" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(0, 324)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_left"]
+scale = Vector2(29.5, 1)
+shape = SubResource("WorldBoundaryShape2D_0m5xv")
+
+[node name="border_right" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(1175, 324)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_right"]
+scale = Vector2(30.5, 1)
+shape = SubResource("WorldBoundaryShape2D_fudkf")
+
+[node name="TestGrounds" parent="." instance=ExtResource("4_d17i7")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Ball0" parent="." instance=ExtResource("5_4iuwv")]
+
+[node name="Box0" parent="." instance=ExtResource("6_ln2e8")]
+
+[connection signal="button_down" from="UIelements/SaveButton" to="." method="_on_save_button_button_down"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccfugb4dav8tr"]
+
+[ext_resource type="Script" path="res://scenes/ui/navui.gd" id="1_iss7f"]
+[ext_resource type="PackedScene" uid="uid://bjnvs8wxvyq06" path="res://scenes/ui/navui-bar_top.tscn" id="1_m7myf"]
+[ext_resource type="PackedScene" uid="uid://dt0dprd3yjgkg" path="res://scenes/ui/navui-bar_bottom.tscn" id="3_qmmgq"]
+[ext_resource type="PackedScene" uid="uid://byf1l6nmtwq0d" path="res://scenes/ui/navui-page_home.tscn" id="3_xuse6"]
+[ext_resource type="PackedScene" uid="uid://c17kuumupgluf" path="res://scenes/ui/navui-sidebar.tscn" id="4_7j7d8"]
+
+[node name="Navui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iss7f")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Navui-bar_top" parent="HBoxContainer" instance=ExtResource("1_m7myf")]
+layout_mode = 2
+
+[node name="ScrollView" type="ScrollContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 448)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Navui-pageHome" parent="HBoxContainer/ScrollView" instance=ExtResource("3_xuse6")]
+layout_mode = 2
+
+[node name="Navui-bar_bottom" parent="HBoxContainer" instance=ExtResource("3_qmmgq")]
+layout_mode = 2
+
+[node name="NavuiSidebar" parent="." instance=ExtResource("4_7j7d8")]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_right = 1152.0
+grow_horizontal = 1

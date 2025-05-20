@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c6b1wul07w86q"]
+
+[node name="TestGrounds" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(599, 395)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2(-663.44, -233.56)
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0.572549, 0.65098, 1)
+polygon = PackedVector2Array(276, 100, 548, 315, 1097, 314, 1365, 84, 1337, 54, 1085, 269, 567, 269, 305, 58)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-664.44, -233.56)
+scale = Vector2(0.8, 0.8)
+polygon = PackedVector2Array(276, 100, 548, 315, 1097, 314, 1365, 84, 1337, 54, 1085, 269, 567, 269, 305, 58)

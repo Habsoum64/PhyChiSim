@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://coknnho3ncipp"]
+
+[ext_resource type="Script" path="res://scenes/ui/navui_group.gd" id="1_yt64s"]
+
+[node name="Navui-groupSlideshow" type="Control"]
+custom_minimum_size = Vector2(1152, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 300.0
+mouse_filter = 1
+script = ExtResource("1_yt64s")
+metadata/navui_group_type = "slideshow"
+
+[node name="SectionTitle" type="Label" parent="."]
+layout_mode = 2
+offset_left = 40.0
+offset_right = 204.0
+offset_bottom = 37.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Section_Title
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(500, 240)
+layout_mode = 2
+anchor_top = 0.211
+anchor_bottom = 0.211
+offset_left = 30.0
+offset_top = 0.189987
+offset_right = 1152.0
+offset_bottom = 240.19
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 20

@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://cn68kqp7tbg7h"]
+
+[ext_resource type="Texture2D" uid="uid://c0x0a3oc2fdtx" path="res://assets/icons/objects/rope.png" id="1_t5i7o"]
+[ext_resource type="Script" path="res://scenes/simulation/physics/spawn_test.gd" id="1_ufuin"]
+[ext_resource type="Texture2D" uid="uid://bef2ixfvs65ww" path="res://assets/icons/objects/rb_31297.png" id="2_f2c4l"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3quuk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lu0j3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ghtgw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lcew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkabm"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_akwrl"]
+a = Vector2(0.5, 268)
+b = Vector2(0.5, 0.666687)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0com"]
+radius = 36.5548
+
+[node name="Sim_interface" type="Node2D"]
+script = ExtResource("1_ufuin")
+
+[node name="scene_borders" type="Node2D" parent="."]
+visible = false
+
+[node name="border_top" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(617, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_top"]
+rotation = 3.14159
+scale = Vector2(57.5, 1)
+shape = SubResource("WorldBoundaryShape2D_3quuk")
+
+[node name="border_down" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(577, 644)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_down"]
+scale = Vector2(57.5, 1)
+shape = SubResource("WorldBoundaryShape2D_lu0j3")
+
+[node name="border_left" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(0, 329)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_left"]
+scale = Vector2(33, 1)
+shape = SubResource("WorldBoundaryShape2D_ghtgw")
+
+[node name="border_right" type="StaticBody2D" parent="scene_borders"]
+position = Vector2(1175, 326)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene_borders/border_right"]
+scale = Vector2(33, 1)
+shape = SubResource("WorldBoundaryShape2D_2lcew")
+
+[node name="bodies" type="Node2D" parent="."]
+
+[node name="Pendulum_hold" type="RigidBody2D" parent="bodies"]
+position = Vector2(540, 28)
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bodies/Pendulum_hold"]
+position = Vector2(1.52588e-05, -9)
+scale = Vector2(5, 1)
+shape = SubResource("RectangleShape2D_pkabm")
+
+[node name="Rope" type="RigidBody2D" parent="bodies"]
+position = Vector2(752, 392)
+rotation = -0.523598
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bodies/Rope"]
+position = Vector2(-3.24927, -422)
+scale = Vector2(4, 1.58)
+shape = SubResource("SegmentShape2D_akwrl")
+
+[node name="Sprite2D" type="Sprite2D" parent="bodies/Rope"]
+position = Vector2(-1.2493, -210.667)
+rotation = 1.5708
+scale = Vector2(1.6, 0.5)
+texture = ExtResource("1_t5i7o")
+
+[node name="Ball" type="RigidBody2D" parent="bodies"]
+position = Vector2(752, 394)
+rotation = -0.523598
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bodies/Ball"]
+position = Vector2(-0.400024, 70.6)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_s0com")
+
+[node name="Sprite2D" type="Sprite2D" parent="bodies/Ball"]
+position = Vector2(0.299988, 71.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_f2c4l")
+
+[node name="links" type="Node2D" parent="bodies"]
+
+[node name="Link1" type="PinJoint2D" parent="bodies/links"]
+position = Vector2(-28, -418)
+rotation = -0.523598
+scale = Vector2(1, 0.6)
+node_a = NodePath("../../Pendulum_hold")
+node_b = NodePath("../../Rope")
+
+[node name="Link2" type="PinJoint2D" parent="bodies/links"]
+position = Vector2(186, -54)
+rotation = -0.523598
+scale = Vector2(1, 0.6)
+node_a = NodePath("../../Rope")
+node_b = NodePath("../../Ball")

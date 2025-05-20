@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj0slvgc1xef5"]
+
+[ext_resource type="Script" path="res://scenes/ui/menu_phy_obj.gd" id="1_fp2se"]
+[ext_resource type="Texture2D" uid="uid://bpkbparqcqnty" path="res://assets/icons/ui/nav/close.svg" id="2_d1p2e"]
+
+[node name="Menu-phyObj" type="CanvasLayer"]
+script = ExtResource("1_fp2se")
+
+[node name="MenuPanel" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(350, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.501961)
+
+[node name="CloseBtn" type="Button" parent="MenuPanel"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+mouse_filter = 1
+icon = ExtResource("2_d1p2e")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ShowVectorsLbl" type="Label" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 337.0
+offset_bottom = 53.0
+text = "Show vectors :"
+
+[node name="Vectors" type="HBoxContainer" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 337.0
+offset_bottom = 81.0
+
+[node name="VecVelocity" type="CheckBox" parent="MenuPanel/Vectors"]
+layout_mode = 2
+action_mode = 0
+text = "Velocity"
+
+[node name="VecGravity" type="CheckBox" parent="MenuPanel/Vectors"]
+layout_mode = 2
+action_mode = 0
+text = "Gravity"
+
+[node name="VecReaction" type="CheckBox" parent="MenuPanel/Vectors"]
+layout_mode = 2
+text = "Reaction"
+
+[node name="ShowValuesLbl" type="Label" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 140.0
+offset_right = 337.0
+offset_bottom = 163.0
+text = "Show values:
+"
+
+[node name="Values" type="HBoxContainer" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 337.0
+offset_bottom = 191.0
+
+[node name="ValVelocity" type="CheckBox" parent="MenuPanel/Values"]
+layout_mode = 2
+text = "Velocity"
+
+[node name="ValGravity" type="CheckBox" parent="MenuPanel/Values"]
+layout_mode = 2
+text = "Gravity"
+
+[node name="ValReaction" type="CheckBox" parent="MenuPanel/Values"]
+layout_mode = 2
+text = "Reaction"
+
+[node name="MakeStaticLbl" type="Label" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 250.0
+offset_right = 95.0
+offset_bottom = 273.0
+text = "Make Static:"
+
+[node name="MakeStaticBtn" type="CheckBox" parent="MenuPanel"]
+layout_mode = 0
+offset_top = 270.0
+offset_right = 118.0
+offset_bottom = 301.0
+text = "On/Off"
+
+[connection signal="pressed" from="MenuPanel/CloseBtn" to="." method="_on_close_btn_pressed"]

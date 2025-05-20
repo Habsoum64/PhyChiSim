@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://y4k2jxh85r00"]
+
+[ext_resource type="Script" path="res://scripts/managers/main_menu/button.gd" id="1_medp1"]
+
+[node name="menu_scene" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 533.0
+offset_top = 319.0
+offset_right = 623.0
+offset_bottom = 350.0
+text = "Press here"
+script = ExtResource("1_medp1")

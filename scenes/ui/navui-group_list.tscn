@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi0xspqjvwebv"]
+
+[ext_resource type="Script" path="res://scenes/ui/navui_group.gd" id="1_ew1c7"]
+
+[node name="Navui-group_list" type="Control"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 400.0
+mouse_filter = 1
+script = ExtResource("1_ew1c7")
+metadata/navui_group_type = "list"
+
+[node name="SectionTitle" type="Label" parent="."]
+layout_mode = 2
+offset_left = 30.0
+offset_top = 10.0
+offset_right = 194.0
+offset_bottom = 47.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.00184107, 0.00184107, 0.00184107, 1)
+theme_override_font_sizes/font_size = 40
+text = "Section_Title"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1120, 0)
+layout_mode = 1
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 1145.0
+offset_bottom = 650.0
+theme_override_constants/separation = 0

@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy0sh5umwvnij"]
+
+[ext_resource type="Texture2D" uid="uid://bictpkjsb8niy" path="res://icon.svg" id="1_mcsnf"]
+[ext_resource type="Script" path="res://scenes/ui/navui_content.gd" id="1_nrcyu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qljm"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Navui-contentCard" type="Control"]
+custom_minimum_size = Vector2(240, 165)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 200.0
+mouse_filter = 1
+script = ExtResource("1_nrcyu")
+metadata/navui_content_type = "card"
+
+[node name="FileLink" type="Button" parent="."]
+custom_minimum_size = Vector2(240, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+metadata/navui_content_type = "card"
+
+[node name="Panel" type="Panel" parent="FileLink"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_0qljm")
+
+[node name="FileName" type="Label" parent="FileLink/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 83.0
+offset_bottom = -1.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 15
+text = "File_name"
+
+[node name="DateModified" type="Label" parent="FileLink/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -23.0
+offset_right = -3.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 15
+text = "Date_modified"
+
+[node name="PreviewImage" type="TextureRect" parent="FileLink/Panel"]
+custom_minimum_size = Vector2(240, 165)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 165.0
+grow_horizontal = 2
+texture = ExtResource("1_mcsnf")
+
+[connection signal="button_down" from="FileLink" to="." method="_on_file_link_button_down"]
