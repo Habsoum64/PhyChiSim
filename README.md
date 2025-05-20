@@ -19,11 +19,11 @@
 
 Here's a look at the main dashboard and simulation library:
 
-![image1](image1)
+![Screenshot (1184)](https://github.com/user-attachments/assets/3d8caa2d-d84d-4447-ba13-489c0ad3d4e5)
 
 And an example of a physics simulation in action:
 
-![image2](image2)
+![Screenshot (1199)](https://github.com/user-attachments/assets/08cd5624-7a0e-43a3-891b-ba3bead3f9ea)
 
 ---
 
@@ -59,7 +59,8 @@ And an example of a physics simulation in action:
 
 ## License
 
-This project is open source and uses an available and appropriate license. Please see the `LICENSE` file in the repository for details.
+This project is licensed under the [MIT License](LICENSE).  
+You are free to use, modify, and distribute this software, provided you include the copyright notice.
 
 ---
 
