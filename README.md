@@ -59,7 +59,7 @@ And an example of a physics simulation in action:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).  
+This project is licensed under the [MIT License](LICENSE.txt).  
 You are free to use, modify, and distribute this software, provided you include the copyright notice.
 
 ---
